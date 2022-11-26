@@ -1,19 +1,51 @@
-*
-{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 html,
-body
-{
-    overflow: hidden;
+body {
+  overflow: hidden;
 }
 
-.webgl
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+h1 {
+  margin: 25px;
+  position: absolute;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.button-link {
+  position: absolute;
+  left: 45%;
+  top: 80%;
+  padding: 10px;
+  border-radius: 404px;
+  border: 1px solid black;
+  background: #3a0061;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+a {
+  margin-left: 6px;
+  margin-right: 6px;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-decoration: none;
+}
+
+p {
+  left: 44%;
+  top: 84%;
+  margin: 10px;
+  position: absolute;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

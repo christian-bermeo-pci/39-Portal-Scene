@@ -58,6 +58,10 @@ woodTexture.encoding = THREE.sRGBEncoding;
 /**
  * Materials
  */
+debugObject.portalColor1 = '#ca57f4';
+debugObject.portalColor2 = '#280042';
+debugObject.firefliesColor = '#ee99ff';
+
 // Fixing my materials
 const FixWoodPoleMaterial = new THREE.MeshBasicMaterial({
   color: 0x241413,
@@ -76,10 +80,9 @@ const bakedMaterial = new THREE.MeshBasicMaterial({
 });
 
 // Pole Light Material
-const poleLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffe5 });
-
-debugObject.portalColor1 = '#ca57f4';
-debugObject.portalColor2 = '#280042';
+const poleLightMaterial = new THREE.MeshBasicMaterial({
+  color: debugObject.firefliesColor,
+});
 
 gui
   .addColor(debugObject, 'portalColor1')
@@ -92,7 +95,7 @@ gui
 gui
   .addColor(debugObject, 'portalColor2')
   .onChange(() => {
-    portalLightMaterial.uniforms.uColorEnd.value.set(debugObject.portalColor1);
+    portalLightMaterial.uniforms.uColorEnd.value.set(debugObject.portalColor2);
   })
   .name('Portal Color 2:');
 
@@ -158,7 +161,7 @@ gltfLoader.load(`ChrisPortal/portal.glb`, (gltf) => {
  *  Geometry.
  */
 const firefliesGeometry = new THREE.BufferGeometry();
-const firefliesCount = 40;
+const firefliesCount = 50;
 const positionArray = new Float32Array(firefliesCount * 3);
 const scaleArray = new Float32Array(firefliesCount);
 
@@ -184,11 +187,21 @@ firefliesGeometry.setAttribute(
 /**
  * Material
  */
+
+gui
+  .addColor(debugObject, 'firefliesColor')
+  .onChange(() => {
+    firefliesMaterial.uniforms.uColor.value.set(debugObject.firefliesColor);
+    poleLightMaterial.color.set(debugObject.firefliesColor);
+  })
+  .name('Fireflies Color:');
+
 const firefliesMaterial = new THREE.ShaderMaterial({
   uniforms: {
     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
     uSize: { value: 250 },
     uTime: { value: 0 },
+    uColor: { value: new THREE.Color(debugObject.firefliesColor) },
   },
   vertexShader: firefliesVertexShader,
   fragmentShader: firefliesFragmentShader,
